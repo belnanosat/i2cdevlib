@@ -8,3 +8,6 @@ PIC18/MPU6050/Examples/MPU6050_raw.X/build/
 *.d
 *.elf
 *.map
+STM32/MPU6050/example/i2c.c
+STM32/MPU6050/example/i2c.h
+STM32/MPU6050/example/mpu6050.c
