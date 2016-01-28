@@ -1,0 +1,3 @@
+[submodule "STM32/MPU6050/example/libopencm3"]
+	path = STM32/MPU6050/example/libopencm3
+	url = https://github.com/libopencm3/libopencm3
