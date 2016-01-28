@@ -1660,13 +1660,20 @@ void MPU6050_getMotion9(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx, int1
  * @see MPU6050_RA_ACCEL_XOUT_H
  */
 void MPU6050_getMotion6(int16_t* ax, int16_t* ay, int16_t* az, int16_t* gx, int16_t* gy, int16_t* gz) {
-    i2c_read_sequence(MPU6050_I2C, devAddr, MPU6050_RA_ACCEL_XOUT_H, buffer, 14);
-    *ax = (((int16_t)buffer[0]) << 8) | buffer[1];
-    *ay = (((int16_t)buffer[2]) << 8) | buffer[3];
-    *az = (((int16_t)buffer[4]) << 8) | buffer[5];
-    *gx = (((int16_t)buffer[8]) << 8) | buffer[9];
-    *gy = (((int16_t)buffer[10]) << 8) | buffer[11];
-    *gz = (((int16_t)buffer[12]) << 8) | buffer[13];
+	// TODO: what's wrong with this function?
+//    i2c_read_sequence(MPU6050_I2C, devAddr, MPU6050_RA_ACCEL_XOUT_H, buffer, 14);
+	*ax = i2c_read_word(MPU6050_I2C, devAddr, MPU6050_RA_ACCEL_XOUT_H);
+	*ay = i2c_read_word(MPU6050_I2C, devAddr, MPU6050_RA_ACCEL_YOUT_H);
+	*az = i2c_read_word(MPU6050_I2C, devAddr, MPU6050_RA_ACCEL_ZOUT_H);
+	*gx = i2c_read_word(MPU6050_I2C, devAddr, MPU6050_RA_GYRO_XOUT_H);
+	*gy = i2c_read_word(MPU6050_I2C, devAddr, MPU6050_RA_GYRO_YOUT_H);
+	*gz = i2c_read_word(MPU6050_I2C, devAddr, MPU6050_RA_GYRO_ZOUT_H);
+    /* *ax = (((int16_t)buffer[0]) << 8) | buffer[1]; */
+    /* *ay = (((int16_t)buffer[2]) << 8) | buffer[3]; */
+    /* *az = (((int16_t)buffer[4]) << 8) | buffer[5]; */
+    /* *gx = (((int16_t)buffer[8]) << 8) | buffer[9]; */
+    /* *gy = (((int16_t)buffer[10]) << 8) | buffer[11]; */
+    /* *gz = (((int16_t)buffer[12]) << 8) | buffer[13]; */
 }
 /** Get 3-axis accelerometer readings.
  * These registers store the most recent accelerometer measurements.
@@ -1780,10 +1787,13 @@ int16_t MPU6050_getTemperature() {
  * @see MPU6050_RA_GYRO_XOUT_H
  */
 void MPU6050_getRotation(int16_t* x, int16_t* y, int16_t* z) {
-	i2c_read_sequence(MPU6050_I2C, devAddr, MPU6050_RA_GYRO_XOUT_H, buffer, 6);
-    *x = (((int16_t)buffer[0]) << 8) | buffer[1];
-    *y = (((int16_t)buffer[2]) << 8) | buffer[3];
-    *z = (((int16_t)buffer[4]) << 8) | buffer[5];
+//	i2c_read_sequence(MPU6050_I2C, devAddr, MPU6050_RA_GYRO_XOUT_H, buffer, 6);
+	*x = i2c_read_word(MPU6050_I2C, devAddr, MPU6050_RA_GYRO_XOUT_H);
+	*y = i2c_read_word(MPU6050_I2C, devAddr, MPU6050_RA_GYRO_YOUT_H);
+	*z = i2c_read_word(MPU6050_I2C, devAddr, MPU6050_RA_GYRO_ZOUT_H);
+    /* *x = (((int16_t)buffer[0]) << 8) | buffer[1]; */
+    /* *y = (((int16_t)buffer[2]) << 8) | buffer[3]; */
+    /* *z = (((int16_t)buffer[4]) << 8) | buffer[5]; */
 }
 /** Get X-axis gyroscope reading.
  * @return X-axis rotation measurement in 16-bit 2's complement format

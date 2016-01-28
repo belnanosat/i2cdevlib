@@ -10,5 +10,7 @@ OBJS += usart.o
 OBJS += i2c.o
 OBJS += main.o
 OBJS += mpu6050.o
+OBJS += hmc5883l.o
+OBJS += madgwick_ahrs.o
 
 include libopencm3.target.mk
